@@ -28,3 +28,7 @@ const TicketWrapper = styled.div`
           <Body>{ticket.body}</Body>
       </TicketWrapper>
   )
+
+
+
+  export default Ticket;
