@@ -12,3 +12,19 @@ const TicketWrapper = styled.div`
      margin-bottom:5%;
  }
  `;
+
+ const Title = styled.h3`
+ width:100%;
+ margin:0px;`;
+
+
+ const Body = styled.p`
+  width:100%;`;
+
+
+  const Ticket = ({ticket}) =>(
+      <TicketWrapper>
+          <Title>{ticket.title}</Title>
+          <Body>{ticket.body}</Body>
+      </TicketWrapper>
+  )
