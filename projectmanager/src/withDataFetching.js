@@ -40,14 +40,16 @@ export default function withDataFetching(wrappedComponent){
             })
         }
 
-
-
-
-
-
-
-
     }
       
+    render(){
+        const {data,loading,error} = this.state;
+    return(
+        <wrappedComponent   
+          data={data}
+          loading={loading}
+          error = {error}
+          {...this.props}/>
+    )
   }
 }
