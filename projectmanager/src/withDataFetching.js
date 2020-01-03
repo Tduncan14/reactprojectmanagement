@@ -2,7 +2,7 @@ import React from 'react';
 
 // creating an highorder component that returns a  new component
 
-export default function withDataFetching(wrappedComponent){
+export default function withDataFetching(WrappedComponent){
 
 
   return class extends React.Component{
@@ -45,7 +45,7 @@ export default function withDataFetching(wrappedComponent){
     render(){
         const {data,loading,error} = this.state;
     return(
-        <wrappedComponent   
+        <WrappedComponent   
           data={data}
           loading={loading}
           error = {error}
