@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import styled from 'styled-components';
-import data from '../../assets/data.json';
+import data from '../assets/data.json';
 
 
 const BoardWrapper = styled.div `
