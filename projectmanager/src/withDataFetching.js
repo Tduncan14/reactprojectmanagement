@@ -20,7 +20,7 @@ export default function withDataFetching(WrappedComponent){
     async componentDidMount(){
 
        try {
-           const data = await fetch(this.props.datasource)
+           const data = await fetch(this.props.dataSource)
 
            const dataJSON = await data.json();
 
