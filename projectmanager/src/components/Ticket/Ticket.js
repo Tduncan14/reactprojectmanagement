@@ -10,6 +10,7 @@ const TicketWrapper = styled.div`
 
  &:not(:last-child){
      margin-bottom:5%;
+     margin-right:${props => !!props.marginRight ? '1%' : '0'};
  }
  `;
 
@@ -22,8 +23,8 @@ const TicketWrapper = styled.div`
   width:100%;`;
 
 
-  const Ticket = ({ticket}) =>(
-      <TicketWrapper>
+  const Ticket = ({ticket, marginRight}) =>(
+    <TicketWrapper  marginRight= {marginRight}>
           <Title>{ticket.title}</Title>
           <Body>{ticket.body}</Body>
       </TicketWrapper>

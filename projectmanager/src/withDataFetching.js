@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{Component} from 'react';
 
 // creating an highorder component that returns a  new component
 
 export default function withDataFetching(WrappedComponent){
 
 
-  return class extends React.Component{
+ class WithDataFetching extends Component{
 
     constructor(props){
         super(props);
@@ -53,4 +53,10 @@ export default function withDataFetching(WrappedComponent){
     )
   }
 }
+
+    WithDataFetching.displayName = `withDataFetching(${WrappedComponent.name})`;
+
+
+    return WithDataFetching;
+
 }

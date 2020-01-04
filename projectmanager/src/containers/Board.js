@@ -18,115 +18,118 @@ margin:5%;
 const  info = data;
 
 
-// class Board extends Component {
+class Board extends Component {
 
-//   constructor(){
-//       super()
+  constructor(props){
+      super(props)
 
-//     this.state={
-//         data:[],
-//         loading:true,
-//         error:''
-//     }
-//   }
-
-
-//   async componentDidMount(){
+    this.state={
+        data:[],
+        loading:true,
+        error:'',
+        lanes:[]
+    }
+  }
 
 
-//     try{
-
-//         console.log(info,'info')
-
-//         const tickets = await fetch('../assets/data.json')
-
-//         console.log(tickets,'tickets')
-//         const ticketsJSON =  await tickets.json();
+  async componentDidMount(){
 
 
+    try{
 
+         const lanes = this.props.lanes
+        console.log(info,'info')
 
-//         if(ticketsJSON){
+        const tickets = await fetch('../assets/data.json')
 
-//             this.setState({
-//                 data:ticketsJSON,
-//                 loading:false
-//             })
-//         }
-
-//     }
-
-//     catch(error){
-
-//         this.setState({
-//             error:error.message
-//         })
-//     }
+        console.log(tickets,'tickets')
+        const ticketsJSON =  await tickets.json();
 
 
 
 
+        if(ticketsJSON){
 
+            this.setState({
+                data:ticketsJSON,
+                loading:false,
+                lanes:lanes
+            })
+        }
 
-//   }
+    }
 
+    catch(error){
 
-//   render(){
-//        const {data,loading,error} = this.state;
-
-
-//        const lanes = [
-//            {id:1,title:'To Do'},
-//            {id:2,title:'In Progress'},
-//            {id:3,title:'Review'},
-//            {id:4,title:'Done'}
-//        ]
-
-
-//        console.log(this.state.data,'data')
-//     return(
-//         <BoardWrapper>
-//             {
-//             lanes.map(lane =>
-//              <Lane 
-//                key={lane.id}
-//                title={lane.title}
-//                loading={loading}
-//                error={error}
-//                tickets={data.filter(
-//                    ticket => ticket.lane == lane.id
-//                )}
-
-
-//                />)
-//             }
-//         </BoardWrapper>
-//     )
-//   }
+        this.setState({
+            error:error.message
+        })
+    }
 
 
 
 
-// }
+
+
+  }
+
+
+  render(){
+       const { lanes,data,loading,error} = this.state;
+
+
+    //    const lanes = [
+    //        {id:1,title:'To Do'},
+    //        {id:2,title:'In Progress'},
+    //        {id:3,title:'Review'},
+    //        {id:4,title:'Done'}
+    //    ]
+
+
+       console.log(this.state.data,'data')
+    return(
+        <BoardWrapper>
+            {
+            lanes.map(lane =>
+             <Lane 
+               key={lane.id}
+               title={lane.title}
+               loading={loading}
+               error={error}
+               tickets={data.filter(
+                   ticket => ticket.lane == lane.id
+               )}
+
+
+               />)
+            }
+        </BoardWrapper>
+    )
+  }
+
+
+
+
+}
 
 // expport a the function to hoc to create a new component
 
-const Board = ({lanes,loading,error,data}) => (
- <BoardWrapper>
-     {
-        lanes.map(lane =>(
-            <Lane       
-            key={lane.id}
-            title={lane.title}
-            loadin={loading}
-            error={error}
-            tickets ={data.filter(ticket => ticket.lane === lane.id)}
-            />
-        ))
-     }
+// const Board = ({lanes,loading,error,data}) => (
+//  <BoardWrapper>
+//      {
+//         lanes.map(lane =>(
+//             <Lane       
+//             key={lane.id}
+//             title={lane.title}
+//             loadin={loading}
+//             error={error}
+//             tickets ={data.filter(ticket => ticket.lane === lane.id)}
+//             />
+//         ))
+//      }
 
- </BoardWrapper>
-)
+//  </BoardWrapper>
+// )
 
 
 // export default Board;

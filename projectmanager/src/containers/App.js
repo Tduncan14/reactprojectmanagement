@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import styled,{createGlobalStyle} from 'styled-components';
 import Board from './Board';
 import Header from '../components/Header/Header.js';
+import Tickets from '../containers/Ticket';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -38,6 +39,7 @@ const AppWrapper = styled.div`
       <AppWrapper>
         <Header/>
         <Board lanes={lanes} dataSource ={'../assets/data.json'}/>
+        <Tickets dataSource ={'../assets/data.json'}/>
       </AppWrapper>
       </>
     )
