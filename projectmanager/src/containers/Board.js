@@ -24,10 +24,7 @@ class Board extends Component {
       super(props)
 
     this.state={
-        data:[],
-        loading:true,
-        error:'',
-        lanes:[]
+      tickets:[]
     }
   }
 
@@ -37,25 +34,25 @@ class Board extends Component {
 
     try{
 
-         const lanes = this.props.lanes
-        console.log(info,'info')
+        //  const lanes = this.props.lanes
+        // console.log(info,'info')
 
-        const tickets = await fetch('../assets/data.json')
+        // const tickets = await fetch('../assets/data.json')
 
-        console.log(tickets,'tickets')
-        const ticketsJSON =  await tickets.json();
-
-
+        // console.log(tickets,'tickets')
+        // const ticketsJSON =  await tickets.json();
 
 
-        if(ticketsJSON){
 
-            this.setState({
-                data:ticketsJSON,
-                loading:false,
-                lanes:lanes
-            })
-        }
+
+        // if(ticketsJSON){
+
+        //     this.setState({
+        //         data:ticketsJSON,
+        //         loading:false,
+        //         lanes:lanes
+        //     })
+        // }
 
     }
 
@@ -74,9 +71,61 @@ class Board extends Component {
   }
 
 
-  render(){
-       const { lanes,data,loading,error} = this.state;
+  componentDidUpdate(prevProps){
 
+    if(prevProps.data !== this.props.data){
+
+        this.setState({tickets:this.props.data})
+    }
+
+
+  }
+
+
+  onDrop = (e, laneId) => {
+
+    const id = e.dataTransfer.getData('id');
+
+
+    const tickets = this.state.tickets.filter(ticket => {
+       
+        if(ticket.id === parseInt(id)){
+            ticket.id = laneId;
+            console.log('change')
+        }
+          return ticket
+    });
+
+     this.setState({
+         ...this.state, tickets
+     })
+
+     console.log('this is the updated state',this.state.tickets)
+  }
+
+  onDragStart = (e,id) => {
+
+  console.log(id,e,'it works')
+   e.dataTransfer.setData( 'id',id);
+
+
+
+  
+
+  }
+
+
+ onDragOver = e => {
+
+    e.preventDefault();
+    console.log('prvented')
+ }
+
+
+  render(){
+       const { lanes,data,loading,error} = this.props;
+     
+       console.log(this.state.tickets,'tickets state')
 
     //    const lanes = [
     //        {id:1,title:'To Do'},
@@ -96,7 +145,11 @@ class Board extends Component {
                title={lane.title}
                loading={loading}
                error={error}
-               tickets={data.filter(
+               laneId = {lane.id}
+               onDrop = {this.onDrop}
+               onDragStart ={this.onDragStart}
+               onDragOver = {this.onDragOver}
+               tickets={this.state.tickets.filter(
                    ticket => ticket.lane == lane.id
                )}
 

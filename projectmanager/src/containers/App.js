@@ -39,7 +39,7 @@ const AppWrapper = styled.div`
       <AppWrapper>
         <Header/>
         <Board lanes={lanes} dataSource ={'../assets/data.json'}/>
-        <Tickets dataSource ={'../assets/data.json'}/>
+        {/* <Tickets dataSource ={'../assets/data.json'}/> */}
       </AppWrapper>
       </>
     )
