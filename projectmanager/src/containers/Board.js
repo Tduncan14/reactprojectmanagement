@@ -29,46 +29,46 @@ class Board extends Component {
   }
 
 
-  async componentDidMount(){
+//   async componentDidMount(){
 
 
-    try{
+//     try{
 
-        //  const lanes = this.props.lanes
-        // console.log(info,'info')
+//         //  const lanes = this.props.lanes
+//         // console.log(info,'info')
 
-        // const tickets = await fetch('../assets/data.json')
+//         // const tickets = await fetch('../assets/data.json')
 
-        // console.log(tickets,'tickets')
-        // const ticketsJSON =  await tickets.json();
-
-
-
-
-        // if(ticketsJSON){
-
-        //     this.setState({
-        //         data:ticketsJSON,
-        //         loading:false,
-        //         lanes:lanes
-        //     })
-        // }
-
-    }
-
-    catch(error){
-
-        this.setState({
-            error:error.message
-        })
-    }
+//         // console.log(tickets,'tickets')
+//         // const ticketsJSON =  await tickets.json();
 
 
 
 
+//         // if(ticketsJSON){
+
+//         //     this.setState({
+//         //         data:ticketsJSON,
+//         //         loading:false,
+//         //         lanes:lanes
+//         //     })
+//         // }
+
+//     }
+
+//     catch(error){
+
+//         this.setState({
+//             error:error.message
+//         })
+//     }
 
 
-  }
+
+
+
+
+//   }
 
 
   componentDidUpdate(prevProps){
@@ -90,7 +90,7 @@ class Board extends Component {
     const tickets = this.state.tickets.filter(ticket => {
        
         if(ticket.id === parseInt(id)){
-            ticket.id = laneId;
+            ticket.lane = laneId;
             console.log('change')
         }
           return ticket
@@ -134,6 +134,8 @@ class Board extends Component {
     //        {id:4,title:'Done'}
     //    ]
 
+       let idnumber = 0
+
 
        console.log(this.state.data,'data')
     return(
@@ -141,7 +143,7 @@ class Board extends Component {
             {
             lanes.map(lane =>
              <Lane 
-               key={lane.id}
+               key={idnumber++}
                title={lane.title}
                loading={loading}
                error={error}
